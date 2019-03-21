@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Persona")
 @NamedQueries(@NamedQuery(name = "findAll", query = "select p from Persona p"))
 public class Persona implements Serializable {
 
