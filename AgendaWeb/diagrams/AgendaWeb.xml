@@ -2,9 +2,20 @@
 	<entity>
 		<entity-name>org.agenda.model.Persona</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>108</entity-height>
+		<entity-height>146</entity-height>
 		<entity-X-Coordinate>50</entity-X-Coordinate>
 		<entity-Y-Coordinate>50</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>org.agenda.model.Gruppo</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>146</entity-height>
+		<entity-X-Coordinate>300</entity-X-Coordinate>
+		<entity-Y-Coordinate>90</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
