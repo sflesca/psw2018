@@ -19,5 +19,15 @@
 <%} else { %>
 Nessuna persona nel gruppo!
 <%} %>
+
+<%if(persone.getGroups().size()>0){ %>
+<ul>
+<% for(Gruppo g : persone.getGroups()){ %>
+	<li><a href="?gid=<%= g.getId() %>">Id: <%= g.getId() %> Name: <%= g.getNome() %></a> </li>
+<% } %>
+</ul>
+<%} else { %>
+Nessun gruppo!
+<%} %>
 </body>
 </html>

@@ -7,7 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.agenda.model.Persona;
-import javax.persistence.ManyToOne;
+import java.util.Collection;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "Gruppo")
@@ -22,8 +23,8 @@ public class Gruppo implements Serializable {
 	@Id
 	private long id;
 	private String nome;
-	@ManyToOne
-	private Persona persona;
+	@OneToMany(mappedBy = "gruppo")
+	private Collection<Persona> persona;
 	public long getId() {
 		return id;
 	}
@@ -40,11 +41,11 @@ public class Gruppo implements Serializable {
 		this.nome = param;
 	}
 
-	public Persona getPersona() {
+	public Collection<Persona> getPersona() {
 	    return persona;
 	}
 
-	public void setPersona(Persona param) {
+	public void setPersona(Collection<Persona> param) {
 	    this.persona = param;
 	}
 

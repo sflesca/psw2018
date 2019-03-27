@@ -14,6 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import org.agenda.model.*;
 
@@ -27,7 +33,9 @@ public class ListaPersone extends HttpServlet {
 	@PersistenceContext
 	EntityManager em;
 
-       
+    @Resource
+    UserTransaction utx;
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -47,13 +55,44 @@ public class ListaPersone extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Query q = em.createNamedQuery("findAll");
-		List<Persona> lp =q.getResultList();
+		try {
+			utx.begin();
+		} catch (NotSupportedException | SystemException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String gidStr = request.getParameter("gid");
 		PersoneBean pb = new PersoneBean();
-		pb.setGroupName("ciao");
 		request.setAttribute("persone", pb);
+		if(gidStr!=null) {
+			long gid = Integer.parseInt(gidStr);
+			Gruppo g = em.find(Gruppo.class, gid);
+			pb.setGroup(g);
+//			Query q = em.createNamedQuery("findPersonsByGroupId");
+//			q.setParameter("groupid", g.getId());
+//			List<Persona> lp =q.getResultList();
+//			for( Persona p: lp) {
+			for( Persona p: g.getPersona()) {
+				pb.getPers().add(p);
+			}
+		}else {
+		Query q = em.createNamedQuery("findAllPersons");
+		List<Persona> lp =q.getResultList();
 		for( Persona p: lp) {
 			pb.getPers().add(p);
+		}
+		}
+		Query q = em.createNamedQuery("findAllGroups");
+		List<Gruppo> lg =q.getResultList();
+		for( Gruppo g: lg) {
+			pb.getGroups().add(g);
+		}
+		try {
+			utx.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException | SystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		gotoPage("/Persone.jsp",request,response);
 	}

@@ -4,19 +4,24 @@ import java.util.*;
 
 public class PersoneBean {
 	
-	private String groupName = "Nessuno";
-	List<Persona> pers = new ArrayList<Persona>();
+	private Gruppo group = null;
+	private List<Gruppo> groups = new ArrayList<Gruppo>();
+	private List<Persona> pers = new ArrayList<Persona>();
 
 	public String getGroupName() {
-		return groupName;
+		return (group!=null)?group.getNome():"Nessun gruppo selezionato";
 	}
 
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
+	public void setGroup(Gruppo g) {
+		this.group = g;
 	}
 
 	public List<Persona> getPers() {
 		return pers;
 	}
-
+	
+	public List<Gruppo> getGroups() {
+		return groups;
+	}
+	
 }
