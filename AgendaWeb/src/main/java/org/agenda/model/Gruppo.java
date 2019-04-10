@@ -3,10 +3,13 @@ package org.agenda.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.agenda.model.Persona;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
 
@@ -20,11 +23,11 @@ public class Gruppo implements Serializable {
 	public Gruppo() {
 	}
 
-	@Id
+	@Id@GeneratedValue
 	private long id;
 	private String nome;
 	@OneToMany(mappedBy = "gruppo")
-	private Collection<Persona> persona;
+	private Collection<Persona> persona = new ArrayList<Persona>();
 	public long getId() {
 		return id;
 	}
