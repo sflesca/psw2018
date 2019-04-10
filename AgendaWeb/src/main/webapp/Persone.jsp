@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>La tua Agenda</title>
 </head>
 <body>
 <jsp:useBean id="persone" class="org.agenda.model.PersoneBean" scope="request"></jsp:useBean>

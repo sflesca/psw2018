@@ -12,6 +12,9 @@ public class PersoneBean {
 		return (group!=null)?group.getNome():"Nessun gruppo selezionato";
 	}
 
+	public Gruppo getGroup() {
+		return group;
+	}
 	public void setGroup(Gruppo g) {
 		this.group = g;
 	}
