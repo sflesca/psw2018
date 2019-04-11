@@ -20,6 +20,15 @@
 Nessuna persona nel gruppo!
 <%} %>
 
+<%if(persone.getGroup()!=null) {%>
+Inserisci nuova persona nel gruppo:
+<form action="InserisciPersona" method="get">
+Nome: <input type=text name=pname>
+<input type=hidden name=gid value=<%=persone.getGroup().getId() %>>
+<input type=submit value="Crea Gruppo"><br>
+</form>
+<%} %>
+
 <%if(persone.getGroups().size()>0){ %>
 <ul>
 <% for(Gruppo g : persone.getGroups()){ %>

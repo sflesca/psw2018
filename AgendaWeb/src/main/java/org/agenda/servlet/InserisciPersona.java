@@ -11,22 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.agenda.ejb.*;
-import org.agenda.model.*;
+import org.agenda.model.Persona;
 
 /**
- * Servlet implementation class InserisciGruppo
+ * Servlet implementation class InserisciPersona
  */
-@WebServlet("/InserisciGruppo")
-public class InserisciGruppo extends HttpServlet {
+@WebServlet("/InserisciPersona")
+public class InserisciPersona extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+      
 	
 	@EJB
-	GruppoEJB app;
-       
+	PersoneEJB pEJB;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InserisciGruppo() {
+    public InserisciPersona() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,14 +35,15 @@ public class InserisciGruppo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nomeGruppo = request.getParameter("groupname");
-		if (nomeGruppo!=null&& !nomeGruppo.equals("")) {
-			Gruppo g = app.inserisciGruppo(nomeGruppo);
-			request.setAttribute("gruppo", g);
-			gotoPage("/nuovoGruppo.jsp",request,response);
-		}else {
-			response.getWriter().append("Specificare Nome");
-		}
+		String nome = request.getParameter("pname");
+		String gidStr = request.getParameter("gid");
+		if(nome!=null&&gidStr!=null) {
+			long gid = Long.parseLong(gidStr);
+			Persona p = pEJB.inserisciPersona(nome, gid);
+			request.setAttribute("persona", p);
+			gotoPage("/nuovaPersona.jsp",request,response);
+		}else
+			response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -52,12 +53,11 @@ public class InserisciGruppo extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
+
 	private void gotoPage(String address, HttpServletRequest request,
 			HttpServletResponse response) throws ServletException,IOException{
 		RequestDispatcher dispatcher =
 				request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}
-
 }

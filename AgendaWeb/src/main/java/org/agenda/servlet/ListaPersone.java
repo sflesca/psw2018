@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.persistence.*;
 import javax.servlet.RequestDispatcher;
@@ -21,6 +22,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import org.agenda.ejb.*;
 import org.agenda.model.*;
 
 /**
@@ -33,8 +35,12 @@ public class ListaPersone extends HttpServlet {
 	@PersistenceContext
 	EntityManager em;
 
-    @Resource
-    UserTransaction utx;
+	@EJB
+	PersoneEJB pEJB;
+	
+	@EJB
+	GruppoEJB gEJB;
+
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,44 +61,25 @@ public class ListaPersone extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			utx.begin();
-		} catch (NotSupportedException | SystemException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		String gidStr = request.getParameter("gid");
 		PersoneBean pb = new PersoneBean();
 		request.setAttribute("persone", pb);
 		if(gidStr!=null) {
 			long gid = Integer.parseInt(gidStr);
-			Gruppo g = em.find(Gruppo.class, gid);
+			Gruppo g = gEJB.findGroupWithPersons(gid);
 			pb.setGroup(g);
-//			Query q = em.createNamedQuery("findPersonsByGroupId");
-//			q.setParameter("groupid", g.getId());
-//			List<Persona> lp =q.getResultList();
-//			for( Persona p: lp) {
 			for( Persona p: g.getPersona()) {
 				pb.getPers().add(p);
 			}
 		}else {
-		Query q = em.createNamedQuery("findAllPersons");
-		List<Persona> lp =q.getResultList();
-		for( Persona p: lp) {
-			pb.getPers().add(p);
+			List<Persona> lp = pEJB.findAllPersons();
+			for( Persona p: lp) {
+				pb.getPers().add(p);
+			}
 		}
-		}
-		Query q = em.createNamedQuery("findAllGroups");
-		List<Gruppo> lg =q.getResultList();
+		List<Gruppo> lg = gEJB.findAllGroups();
 		for( Gruppo g: lg) {
 			pb.getGroups().add(g);
-		}
-		try {
-			utx.commit();
-		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
-				| HeuristicRollbackException | SystemException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		gotoPage("/Persone.jsp",request,response);
 	}

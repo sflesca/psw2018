@@ -53,11 +53,6 @@ public class CaricamentoDati {
     	return true;
     }
     
-    public Gruppo inserisciGruppo(String nome) {
-    	Gruppo g = new Gruppo();
-    	g.setNome(nome);
-    	em.persist(g);
-    	return g;
-    }
+
      
 }
