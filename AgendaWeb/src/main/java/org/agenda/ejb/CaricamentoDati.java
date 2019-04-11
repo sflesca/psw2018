@@ -52,5 +52,12 @@ public class CaricamentoDati {
     	em.persist(p4);
     	return true;
     }
+    
+    public Gruppo inserisciGruppo(String nome) {
+    	Gruppo g = new Gruppo();
+    	g.setNome(nome);
+    	em.persist(g);
+    	return g;
+    }
      
 }

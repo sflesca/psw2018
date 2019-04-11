@@ -29,5 +29,11 @@ Nessuna persona nel gruppo!
 <%} else { %>
 Nessun gruppo!
 <%} %>
+
+<form action="InserisciGruppo" method="get">
+<h2>Inserisci nuovo Gruppo</h2>
+Nome: <input type=text name=groupname>
+<input type=submit value="Crea Gruppo"><br>
+</form>
 </body>
 </html>
