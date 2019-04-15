@@ -24,9 +24,9 @@
 		</rich:dataTable>
 	</rich:panel>
 	<h:form>
-		<h:commandButton value="All Groups" action="#{dashBoard.changeGroup(-1)}"/>
+		<h:commandButton  value="All Groups" action="#{dashBoard.changeGroup(-1)}" rendered="#{dashBoard.group!=null}"/>
 		<ui:repeat value="#{dashBoard.groups}" var="group">
-			<h:commandButton value="#{group.nome}" action="#{dashBoard.changeGroup(group.id)}"/>
+			<h:commandButton value="#{group.nome}" action="#{dashBoard.changeGroup(group.id)}" rendered="#{group ne dashBoard.group}"/>
 		</ui:repeat>
 	</h:form>
 </f:view>
