@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<f:view>
+    <rich:panel>
+		<h:outputText value="#{dashBoard.groupName}" />	
+		<rich:dataTable value="#{dashBoard.pers}" var="persona" rowKeyVar="row">
+			<f:facet name="header">Persone nel gruppo</f:facet>
+			<rich:column style="text-align:center;">
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{persona.id}"/>
+			</rich:column>
+			<rich:column style="text-align:center;">
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{persona.nome}"/>
+			</rich:column>
+		</rich:dataTable>
+	</rich:panel>
+	<h:commandButton value="Click"/>
+</f:view>
+</body> 
+</html>

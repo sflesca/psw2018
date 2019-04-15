@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#DashBoard.xhtml"
+  PATH="/pages/DashBoard.xhtml" SHAPE="293,185,0,0"
+  model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>

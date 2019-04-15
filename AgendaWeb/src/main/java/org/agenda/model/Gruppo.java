@@ -11,6 +11,8 @@ import org.agenda.model.Persona;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,7 +29,7 @@ public class Gruppo implements Serializable {
 	private long id;
 	private String nome;
 	@OneToMany(mappedBy = "gruppo")
-	private Collection<Persona> persona = new ArrayList<Persona>();
+	private List<Persona> persona = new ArrayList<Persona>();
 	public long getId() {
 		return id;
 	}
@@ -44,11 +46,11 @@ public class Gruppo implements Serializable {
 		this.nome = param;
 	}
 
-	public Collection<Persona> getPersona() {
+	public List<Persona> getPersona() {
 	    return persona;
 	}
 
-	public void setPersona(Collection<Persona> param) {
+	public void setPersona(List<Persona> param) {
 	    this.persona = param;
 	}
 
