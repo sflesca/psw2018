@@ -64,9 +64,14 @@ public class DashBoard {
 	}
 	
 	public String changeGroup(long gid) {
-		Gruppo g = gEJB.findGroupWithPersons(gid);
-		setGroup(g);
-		setPers(g.getPersona());
+		if (gid==-1) {
+			setGroup(null);
+			setPers(pEJB.findAllPersons());
+		}else {
+			Gruppo g = gEJB.findGroupWithPersons(gid);
+			setGroup(g);
+			setPers(g.getPersona());
+		}
 		return null;
 	}
 }

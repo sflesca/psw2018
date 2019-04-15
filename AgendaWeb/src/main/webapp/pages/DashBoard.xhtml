@@ -23,7 +23,12 @@
 			</rich:column>
 		</rich:dataTable>
 	</rich:panel>
-	<h:commandButton value="Click"/>
+	<h:form>
+		<h:commandButton value="All Groups" action="#{dashBoard.changeGroup(-1)}"/>
+		<ui:repeat value="#{dashBoard.groups}" var="group">
+			<h:commandButton value="#{group.nome}" action="#{dashBoard.changeGroup(group.id)}"/>
+		</ui:repeat>
+	</h:form>
 </f:view>
 </body> 
 </html>
