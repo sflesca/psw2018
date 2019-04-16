@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:#pages#DashBoard.xhtml"
-  PATH="/pages/DashBoard.xhtml" SHAPE="293,185,0,0"
-  model-entity="JSFProcessGroup" persistent="true"/>
+  PATH="/pages/DashBoard.xhtml" SHAPE="293,185,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#DashBoard.xhtml:0" NAME="item"
+   PATH="/pages/DashBoard.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="insgrp::#pages#InserisciGruppo.xhtml"
+    NAME="output" PATH="/pages/InserisciGruppo.xhtml"
+    TARGET="rules:#pages#InserisciGruppo.xhtml" TITLE="insgrp" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#InserisciGruppo.xhtml"
+  PATH="/pages/InserisciGruppo.xhtml" SHAPE="760,192,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#InserisciGruppo.xhtml:0" NAME="item"
+   PATH="/pages/InserisciGruppo.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="dash::#pages#DashBoard.xhtml" NAME="output"
+    PATH="/pages/DashBoard.xhtml" TARGET="rules:#pages#DashBoard.xhtml"
+    TITLE="dash" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>
