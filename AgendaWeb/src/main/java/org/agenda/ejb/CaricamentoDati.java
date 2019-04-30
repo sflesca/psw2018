@@ -15,6 +15,9 @@ public class CaricamentoDati {
 	@PersistenceContext
 	EntityManager em;
 	
+	@EJB
+	ProdottoLocal pEJB;
+	
     /**
      * Default constructor. 
      */
@@ -53,6 +56,15 @@ public class CaricamentoDati {
     	return true;
     }
     
-
+    @TransactionAttribute(TransactionAttributeType.REQUIRED) 
+    public void inserisciProdotti() {
+    	Prodotto p = new Prodotto();
+    	p.setNome("P1");
+    	p.setQta(10);
+    	pEJB.inserisciProdotto(p);
+    	
+    	pEJB.inserisciProdotto("P2");
+    	pEJB.inserisciProdotto("P3",30);
+    }
      
 }
