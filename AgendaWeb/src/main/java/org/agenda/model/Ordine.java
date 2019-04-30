@@ -19,10 +19,12 @@ public class Ordine implements Serializable {
 	public Ordine() {
 	}
 
-	@Id
+	@Id@GeneratedValue
 	private long id;
 	@OneToMany(cascade = {CascadeType.PERSIST})
 	private Collection<DettaglioOrdine> dettaglioOrdine = new ArrayList<DettaglioOrdine>(5);
+	
+	private Date data;
 
 	public long getId() {
 		return id;
@@ -38,6 +40,36 @@ public class Ordine implements Serializable {
 
 	public void setDettaglioOrdine(Collection<DettaglioOrdine> param) {
 	    this.dettaglioOrdine = param;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ordine other = (Ordine) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

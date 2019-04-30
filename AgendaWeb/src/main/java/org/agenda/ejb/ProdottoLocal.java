@@ -13,9 +13,11 @@ public interface ProdottoLocal {
 	
     public List<Prodotto> findAllProducts();
     
-    public Prodotto inserisciProdotto(String nome, int qta);
+    public Prodotto find(long pid);
     
-    public Prodotto inserisciProdotto(String nome);
+    public Prodotto inserisciProdotto(String nome, int qta, double price);
+    
+    public Prodotto inserisciProdotto(String nome, double price);
     
     public Prodotto inserisciProdotto(Prodotto p);
     

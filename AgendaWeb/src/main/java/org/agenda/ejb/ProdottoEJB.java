@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.agenda.model.Gruppo;
+import org.agenda.model.Ordine;
 import org.agenda.model.Prodotto;
 
 /**
@@ -34,18 +35,20 @@ public class ProdottoEJB implements ProdottoLocal {
 		return q.getResultList();
 	}
 
-    public Prodotto inserisciProdotto(String nome, int qta) {
+    public Prodotto inserisciProdotto(String nome, int qta, double price) {
     	Prodotto p = new Prodotto();
     	p.setNome(nome);
     	p.setQta(qta);
+    	p.setPrice(price);
     	em.persist(p);
     	return p;
     }
     
-    public Prodotto inserisciProdotto(String nome) {
+    public Prodotto inserisciProdotto(String nome, double price) {
     	Prodotto p = new Prodotto();
     	p.setNome(nome);
     	p.setQta(0);
+    	p.setPrice(price);
     	em.persist(p);
     	return p;
     }
@@ -61,6 +64,12 @@ public class ProdottoEJB implements ProdottoLocal {
 	@Override
 	public Prodotto inserisciProdotto(Prodotto p) {
     	em.persist(p);
+    	return p;
+	}
+
+	@Override
+	public Prodotto find(long pid) {
+		Prodotto p = em.find(Prodotto.class, pid);
     	return p;
 	}
 

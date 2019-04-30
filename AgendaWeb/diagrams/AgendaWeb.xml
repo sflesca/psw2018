@@ -2,7 +2,7 @@
 	<entity>
 		<entity-name>org.agenda.model.Ordine</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>108</entity-height>
+		<entity-height>146</entity-height>
 		<entity-X-Coordinate>490</entity-X-Coordinate>
 		<entity-Y-Coordinate>578</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
@@ -24,7 +24,7 @@
 	<entity>
 		<entity-name>org.agenda.model.Prodotto</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
+		<entity-height>148</entity-height>
 		<entity-X-Coordinate>760</entity-X-Coordinate>
 		<entity-Y-Coordinate>100</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
@@ -46,7 +46,7 @@
 	<entity>
 		<entity-name>org.agenda.model.DettaglioOrdine</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>128</entity-height>
+		<entity-height>148</entity-height>
 		<entity-X-Coordinate>50</entity-X-Coordinate>
 		<entity-Y-Coordinate>578</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>

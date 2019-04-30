@@ -1,35 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
+<h:head></h:head>
 <body>
-<f:view>
-    <rich:panel>
-		<h:outputText value="#{dashBoard.groupName}" />	
-		<rich:dataTable value="#{dashBoard.pers}" var="persona" rowKeyVar="row">
-			<f:facet name="header">Persone nel gruppo</f:facet>
-			<rich:column style="text-align:center;">
-				<f:facet name="header">Id</f:facet>
-				<h:outputText value="#{persona.id}"/>
-			</rich:column>
-			<rich:column style="text-align:center;">
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{persona.nome}"/>
-			</rich:column>
-		</rich:dataTable>
-	</rich:panel>
-	<h:form>
-		<h:commandButton  value="All Groups" action="#{dashBoard.changeGroup(-1)}" rendered="#{dashBoard.group!=null}"/>
-		<ui:repeat value="#{dashBoard.groups}" var="group">
-			<h:commandButton value="#{group.nome}" action="#{dashBoard.changeGroup(group.id)}" rendered="#{group ne dashBoard.group}"/>
-		</ui:repeat><h:link value="Inserisci nuovo gruppo" outcome="insgrp" enabled="true"/>
-	</h:form>
-	
-</f:view>
-</body> 
+	<f:view>
+		<rich:panel>
+			<h:outputText value="#{dashBoard.groupName}" />
+			<rich:dataTable value="#{dashBoard.pers}" var="persona"
+				rowKeyVar="row">
+				<f:facet name="header">Persone nel gruppo</f:facet>
+				<rich:column style="text-align:center;">
+					<f:facet name="header">Id</f:facet>
+					<h:outputText value="#{persona.id}" />
+				</rich:column>
+				<rich:column style="text-align:center;">
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{persona.nome}" />
+				</rich:column>
+			</rich:dataTable>
+		</rich:panel>
+		<h:form>
+			<h:commandButton value="All Groups"
+				action="#{dashBoard.changeGroup(-1)}"
+				rendered="#{dashBoard.group!=null}" />
+			<ui:repeat value="#{dashBoard.groups}" var="group">
+				<h:commandButton value="#{group.nome}"
+					action="#{dashBoard.changeGroup(group.id)}"
+					rendered="#{group ne dashBoard.group}" />
+			</ui:repeat>
+			<h:link value="Inserisci nuovo gruppo" outcome="insgrp"
+				enabled="true" />
+		</h:form>
+		<br />
+		<hr align="center" />
+		<br />
+		<h:form>
+			<ul>
+				<ui:repeat value="#{dashBoard.prodotti}" var="prodotto">
+					<li><h:outputText value="#{prodotto.nome}" />, <h:outputText value="#{prodotto.price}" /> <h:commandLink
+							action="#{carrello.add(prodotto)}">
+							<h:graphicImage value="/resources/images/chart.jpg" width="20" rendered="#{prodotto.qta>0}"/>
+						</h:commandLink></li>
+				</ui:repeat>
+			</ul>
+		</h:form>
+
+		<rich:panel>
+			<h:outputText value="#{carrello.numProdotti()}" />
+			<br />
+			<ul>
+				<ui:repeat value="#{carrello.getContenuto()}" var="dt">
+					<li><h:outputText value="#{dt.prodotto.nome}" />, <h:outputText value="#{dt.qta}" />  
+					</li>
+				</ui:repeat>
+			</ul>
+			<h:form>
+			<h:commandButton value="Ordina"
+					action="#{carrello.order()}"
+					rendered="#{carrello.numProdotti() > 0}" />
+			</h:form>
+		</rich:panel>
+	</f:view>
+</body>
 </html>

@@ -4,8 +4,10 @@ import javax.inject.Named;
 
 import org.agenda.ejb.GruppoEJB;
 import org.agenda.ejb.PersoneEJB;
+import org.agenda.ejb.ProdottoEJB;
 import org.agenda.model.Gruppo;
 import org.agenda.model.Persona;
+import org.agenda.model.Prodotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name="dashBoard")
@@ -24,6 +27,10 @@ public class DashBoard {
 	
 	@EJB
 	GruppoEJB gEJB;
+	
+	@EJB
+	ProdottoEJB prodEJB;
+	
 	
 	public DashBoard() {
 
@@ -73,5 +80,10 @@ public class DashBoard {
 			setPers(g.getPersona());
 		}
 		return null;
+	}
+
+	
+	public List<Prodotto> getProdotti() {
+		return prodEJB.findAllProducts();
 	}
 }

@@ -53,4 +53,10 @@ public class OrdineEJB {
     	return dt;
     }
     
+    public Ordine find(long oid) {
+    	Ordine o = em.find(Ordine.class, oid);
+    	o.getDettaglioOrdine().size();
+    	return o;
+    }
+    
 }

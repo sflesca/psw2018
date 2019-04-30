@@ -61,10 +61,11 @@ public class CaricamentoDati {
     	Prodotto p = new Prodotto();
     	p.setNome("P1");
     	p.setQta(10);
+    	p.setPrice(10.99);
     	pEJB.inserisciProdotto(p);
     	
-    	pEJB.inserisciProdotto("P2");
-    	pEJB.inserisciProdotto("P3",30);
+    	pEJB.inserisciProdotto("P2",10.50);
+    	pEJB.inserisciProdotto("P3",30,11.50);
     }
      
 }
