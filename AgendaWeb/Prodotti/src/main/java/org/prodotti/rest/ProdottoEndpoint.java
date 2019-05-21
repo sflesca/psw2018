@@ -32,10 +32,10 @@ public class ProdottoEndpoint {
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Prodotto create(final Prodotto prodotto) {
+	public Response create(final Prodotto prodotto) {
 		Prodotto p = pEJB.inserisciProdotto(prodotto);
 		//here we use Prodotto#getId(), assuming that it provides the identifier to retrieve the created Prodotto resource. 
-		return p;
+		return Response.ok(p).build();
 	}
 
 	@GET
@@ -54,7 +54,7 @@ public class ProdottoEndpoint {
 			@QueryParam("max") final Integer maxResult) {
 		//TODO: retrieve the prodottoes 
 		final List<Prodotto> prodottoes = pEJB.findAllProducts(startPosition, maxResult);
-		return Response.ok(prodottoes).header("Access-Control-Allow-Origin", "*").build();
+		return Response.ok(prodottoes).build();
 	}
 
 	@PUT
