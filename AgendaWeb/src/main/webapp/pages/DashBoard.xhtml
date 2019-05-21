@@ -42,7 +42,7 @@
 		<h:form>
 			<ul>
 				<ui:repeat value="#{dashBoard.prodotti}" var="prodotto">
-					<li><h:outputText value="#{prodotto.nome}" />, <h:outputText value="#{prodotto.price}" /> <h:commandLink
+					<li><h:outputText value="#{prodotto.id}" />,<h:outputText value="#{prodotto.nome}" />, <h:outputText value="#{prodotto.price}" /> <h:commandLink
 							action="#{carrello.add(prodotto)}">
 							<h:graphicImage value="/resources/images/chart.jpg" width="20" rendered="#{prodotto.qta>0}"/>
 						</h:commandLink></li>

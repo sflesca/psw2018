@@ -1,4 +1,4 @@
-package org.agenda.ejb;
+package org.prodotti.ejb;
 
 import java.util.List;
 
@@ -9,9 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ws.rs.QueryParam;
 
-import org.agenda.model.Gruppo;
-import org.agenda.model.Ordine;
-import org.agenda.model.Prodotto;
+import org.prodotti.model.Ordine;
+import org.prodotti.model.Prodotto;
 
 /**
  * Session Bean implementation class Prodotto

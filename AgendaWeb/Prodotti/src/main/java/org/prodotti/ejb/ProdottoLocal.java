@@ -1,12 +1,11 @@
-package org.agenda.ejb;
+package org.prodotti.ejb;
 
 import java.util.List;
 
 import javax.ejb.Local;
 
 
-import org.agenda.model.Gruppo;
-import org.agenda.model.Prodotto;
+import org.prodotti.model.Prodotto;
 
 @Local
 public interface ProdottoLocal {
