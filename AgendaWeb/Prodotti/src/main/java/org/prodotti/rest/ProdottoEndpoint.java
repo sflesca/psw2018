@@ -60,14 +60,16 @@ public class ProdottoEndpoint {
 	@PUT
 	@Path("/{id:[0-9][0-9]*}")
 	public Response update(@PathParam("id") Long id, final Prodotto prodotto) {
-		//TODO: process the given prodotto 
-		return Response.noContent().build();
+		Prodotto p = pEJB.aggiorna(prodotto);
+		return Response.ok(p).build();
 	}
 
 	@DELETE
 	@Path("/{id:[0-9][0-9]*}")
 	public Response deleteById(@PathParam("id") final Long id) {
-		//TODO: process the prodotto matching by the given id 
+		Prodotto p = pEJB.find(id);
+		if (p!=null)
+			pEJB.remove(p);
 		return Response.noContent().build();
 	}
 
